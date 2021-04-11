@@ -1,0 +1,3 @@
+[submodule "pytorch-direct"]
+	path = pytorch-direct
+	url = https://github.com/K-Wu/pytorch-direct
