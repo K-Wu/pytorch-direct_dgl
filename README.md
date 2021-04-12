@@ -55,7 +55,7 @@ Using MPS requires running an external utility called `nvidia-cuda-mps-control`.
 
 ### Quick Evaluation
 ![Reddit](https://github.com/K-Wu/pytorch-direct_dgl/blob/master/docs/reddit.png)\
-In this chart, we show a GraphSAGE training result for the reddit dataset. Since the reddit dataset is small and can be located either in the host memory or the GPU memory, we tested both cases. As we can observe, with a faster interconnect, the benefit of PyTorch-Direct is greater and it can nearly reach the all-in-GPU memory case.
+In this chart, we show a GraphSAGE training result for the reddit dataset. Since the reddit dataset is small and can be located either in the host memory or the GPU memory, we tested both cases. For the evaluation, we used AMD Threadripper 3960x CPU and NVIDIA RTX 3090 GPU. As we can observe, with a faster interconnect, the benefit of PyTorch-Direct is greater and it can nearly reach the all-in-GPU memory case.
 
 ## Citation
 ```
