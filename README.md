@@ -52,3 +52,13 @@ We do not modify the source of DGL so the users can either install DGL using `pi
 ### Using Multi-Processing Service (MPS)
 To further increase the efficiency of PyTorch-Direct in GNN training, CUDA Multi-Processing Service (MPS) can be used. The purpose of MPS is to allocate a small amount of GPU resource for the zero-copy accesses while leaving the rest for the training process. The MPS can be used in our example GNN code by passing `--mps x,y` argument. Here, `x` is the GPU portion given for the zero-copy kernel and `y` is the GPU portion given for the trainig process. For the NVIDIA RTX 3090 GPU we used, we used `--mps 10,90` setting.
 Using MPS requires running an external utility called `nvidia-cuda-mps-control`. This utiliy should be available as far as CUDA is installed. Running `nvidia-cuda-mps-control` does not require a root permission as the restriction is only applied to the users who are using it. In `<current_path>/dgl/examples/pytorch/graphsage/utils.py` file, we added some scripts which deal with running MPS. The functions declared in this file are used inside `<current_path>/dgl/examples/pytorch/graphsage/train_sampling_pytorch_direct.py`.
+
+## Citation
+```
+@article{min2021large,
+  title={Large Graph Convolutional Network Training with GPU-Oriented Data Communication Architecture},
+  author={Min, Seung Won and Wu, Kun and Huang, Sitao and Hidayeto{\u{g}}lu, Mert and Xiong, Jinjun and Ebrahimi, Eiman and Chen, Deming and Hwu, Wen-mei},
+  journal={arXiv preprint arXiv:2103.03330},
+  year={2021}
+}
+```
