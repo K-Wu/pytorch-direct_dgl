@@ -1,3 +1,6 @@
 [submodule "pytorch-direct"]
 	path = pytorch-direct
 	url = https://github.com/K-Wu/pytorch-direct
+[submodule "dgl"]
+	path = dgl
+	url = https://github.com/davidmin7/dgl.git
