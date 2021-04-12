@@ -54,7 +54,7 @@ To further increase the efficiency of PyTorch-Direct in GNN training, CUDA Multi
 Using MPS requires running an external utility called `nvidia-cuda-mps-control`. This utiliy should be available as far as CUDA is installed. Running `nvidia-cuda-mps-control` does not require a root permission as the restriction is only applied to the users who are using it. In `<current_path>/dgl/examples/pytorch/graphsage/utils.py` file, we added some scripts which deal with running MPS. The functions declared in this file are used inside `<current_path>/dgl/examples/pytorch/graphsage/train_sampling_pytorch_direct.py`.
 
 ### Quick Evaluation
-![Reddit](https://github.com/K-Wu/pytorch-direct_dgl/blob/master/docs/reddit.png)
+![Reddit](https://github.com/K-Wu/pytorch-direct_dgl/blob/master/docs/reddit.png)\
 In this chart, we show a GraphSAGE training result for the reddit dataset. Since the reddit dataset is small and can be located either in the host memory or the GPU memory, we tested both cases. As we can observe, with a faster interconnect, the benefit of PyTorch-Direct is greater and it can nearly reach the all-in-GPU memory case.
 
 ## Citation
