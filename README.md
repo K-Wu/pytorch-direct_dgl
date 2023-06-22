@@ -8,11 +8,13 @@ PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing
 Since we modify the source code of PyTorch, our implementation cannot be installed through well-known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
 
 ### DGL
-dgl 0.6.1
+We use dgl 0.6.1.
+Firstly, we need to update submodule.
+```
+git submodule update --init --recursive
+```
 
-https://docs.dgl.ai/en/0.6.x/install/index.html 
-
-
+please follow https://docs.dgl.ai/en/0.6.x/install/index.html 
 ## Use case
 In the original PyTorch, the scattered data in the host can be accessed by the GPU like the following example:
 ```
