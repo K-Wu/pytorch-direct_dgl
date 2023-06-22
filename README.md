@@ -12,6 +12,17 @@ We use dgl 0.6.1.
 We can build from source. Firstly, we need to update submodule.
 ```
 git submodule update --init --recursive
+cd dgl/
+sudo apt-get update
+sudo apt-get install -y build-essential python3-dev make cmake
+
+mkdir build
+cd build
+cmake -DUSE_CUDA=ON ..
+make -j4
+
+cd ../python
+python setup.py install
 ```
 
 please follow https://docs.dgl.ai/en/0.6.x/install/index.html 
