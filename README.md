@@ -1,9 +1,15 @@
 # PyTorch-Direct
 ## Introduction
-PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing PyTorch DNN framework. Allowing the zero-copy access capabily for GPU significantly increases the data transfer efficiency over PCIe when the targeted data is scattered in the host memory. This is especially useful when the input data cannot be fit into the GPU memory ahead of the training time and data pieces need to be transferred during the training time. With PyTorch-Direct, using the zero-copy access capability can be done by declaring a "Unified Tensor" on top of the existing CPU tensor. The current implementation of PyTorch-Direct is based on the nightly version of PyTorch-1.8.0.
+PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing PyTorch DNN framework. Allowing the zero-copy access capabily for GPU significantly increases the data transfer efficiency over PCIe when the targeted data is scattered in the host memory. This is especially useful when the input data cannot be fit into the GPU memory ahead of the training time, and data pieces need to be transferred during the training time. With PyTorch-Direct, using the zero-copy access capability can be done by declaring a "Unified Tensor" on top of the existing CPU tensor. The current implementation of PyTorch-Direct is based on the nightly version of PyTorch-1.8.0.
 
 ## Installation
-Since we modify the source code of PyTorch, our implementation cannot be installed through well known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
+
+### Pytorch
+Since we modify the source code of PyTorch, our implementation cannot be installed through well-known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
+
+### DGL
+dgl 0.6.1
+
 
 ## Use case
 In the original PyTorch, the scattered data in the host can be accessed by the GPU like the following example:
