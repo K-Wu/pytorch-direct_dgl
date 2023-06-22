@@ -9,7 +9,9 @@ Since we modify the source code of PyTorch, our implementation cannot be install
 
 ### DGL
 dgl 0.6.1
-`conda install -c dglteam "dgl-cuda11.3<0.7"`
+
+https://docs.dgl.ai/en/0.6.x/install/index.html 
+
 
 ## Use case
 In the original PyTorch, the scattered data in the host can be accessed by the GPU like the following example:
