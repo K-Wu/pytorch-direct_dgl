@@ -1,10 +1,42 @@
 # PyTorch-Direct
 ## Introduction
-PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing PyTorch DNN framework. Allowing the zero-copy access capabily for GPU significantly increases the data transfer efficiency over PCIe when the targeted data is scattered in the host memory. This is especially useful when the input data cannot be fit into the GPU memory ahead of the training time and data pieces need to be transferred during the training time. With PyTorch-Direct, using the zero-copy access capability can be done by declaring a "Unified Tensor" on top of the existing CPU tensor. The current implementation of PyTorch-Direct is based on the nightly version of PyTorch-1.8.0.
+PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing PyTorch DNN framework. Allowing the zero-copy access capabily for GPU significantly increases the data transfer efficiency over PCIe when the targeted data is scattered in the host memory. This is especially useful when the input data cannot be fit into the GPU memory ahead of the training time, and data pieces need to be transferred during the training time. With PyTorch-Direct, using the zero-copy access capability can be done by declaring a "Unified Tensor" on top of the existing CPU tensor. The current implementation of PyTorch-Direct is based on the nightly version of PyTorch-1.8.0.
 
 ## Installation
-Since we modify the source code of PyTorch, our implementation cannot be installed through well known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
 
+### Env
+
+Python >= 3.8
+
+
+### Pytorch
+Since we modify the source code of PyTorch, our implementation cannot be installed through well-known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
+
+### DGL
+We use dgl 0.6.1.
+
+We can build from source. Firstly, we need to update the submodule.
+```
+git submodule update --init --recursive
+cd dgl/
+sudo apt-get update
+sudo apt-get install -y build-essential python3-dev make cmake
+
+mkdir build
+cd build
+cmake -DUSE_CUDA=ON ..
+make -j4
+```
+Note that pip will automatically match the latest `scipy`, which needs Python version >= 3.9.
+If using python 3.8, we need to install lower version of `scipy`. For example,`pip install scipy==1.7.0`
+
+After that, we install the dgl 
+```
+cd ../python
+python setup.py install
+```
+
+please follow https://docs.dgl.ai/en/0.6.x/install/index.html 
 ## Use case
 In the original PyTorch, the scattered data in the host can be accessed by the GPU like the following example:
 ```
