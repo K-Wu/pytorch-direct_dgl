@@ -9,7 +9,7 @@ Since we modify the source code of PyTorch, our implementation cannot be install
 
 ### DGL
 We use dgl 0.6.1.
-Firstly, we need to update submodule.
+We can build from source. Firstly, we need to update submodule.
 ```
 git submodule update --init --recursive
 ```
