@@ -6,7 +6,7 @@ PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing
 
 ### Env
 
-Python3.8
+Python >= 3.8
 
 
 ### Pytorch
@@ -28,9 +28,10 @@ cmake -DUSE_CUDA=ON ..
 make -j4
 ```
 Note that pip will automatically match the latest `scipy`, which needs Python version >= 3.9.
-If using python 3.8, we need to install lower `scipy`, for example,
+If using python 3.8, we need to install lower version of `scipy`. For example,`pip install scipy==1.7.0`
+
+After that, we install the dgl 
 ```
-pip install scipy==1.7.0
 cd ../python
 python setup.py install
 ```
