@@ -15,8 +15,7 @@ Since we modify the source code of PyTorch, our implementation cannot be install
 ### DGL
 We use dgl 0.6.1.
 
-
-We can build from source. Firstly, we need to update submodule.
+We can build from source. Firstly, we need to update the submodule.
 ```
 git submodule update --init --recursive
 cd dgl/
@@ -29,7 +28,7 @@ cmake -DUSE_CUDA=ON ..
 make -j4
 ```
 Note that pip will automatically match the latest `scipy`, which needs Python version >= 3.9.
-If using python 3.7, we need to install lower `scipy`, for example,
+If using python 3.8, we need to install lower `scipy`, for example,
 ```
 pip install scipy==1.7.0
 cd ../python
