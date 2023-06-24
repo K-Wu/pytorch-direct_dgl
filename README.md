@@ -2,6 +2,9 @@
 ## Introduction
 PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing PyTorch DNN framework. Allowing the zero-copy access capabily for GPU significantly increases the data transfer efficiency over PCIe when the targeted data is scattered in the host memory. This is especially useful when the input data cannot be fit into the GPU memory ahead of the training time, and data pieces need to be transferred during the training time. With PyTorch-Direct, using the zero-copy access capability can be done by declaring a "Unified Tensor" on top of the existing CPU tensor. The current implementation of PyTorch-Direct is based on the nightly version of PyTorch-1.8.0.
 
+
+The `UnifiedTensor` was introduced in dgl at https://github.com/dmlc/dgl/commit/905c0aa578bca6f51ac2ff453c17e579d5a1b0fb. But after that, it was substituted by the combination of pin_memory_inplace and gather_pinned_tensor_rows functions under `dgl.utils`. See [dgl/pin_memory.py  ](https://github.com/dmlc/dgl/blob/master/python/dgl/utils/pin_memory.py)for reference.
+
 ## Installation
 
 ### Env
