@@ -7,15 +7,20 @@ PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing
 ### Env
 
 Python >= 3.8
-
+DGL >= 0.6.1
 
 ### Pytorch
 Since we modify the source code of PyTorch, our implementation cannot be installed through well-known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
 
 ### DGL
-We use dgl 0.6.1.
+We use dgl 0.6.1. But it can also support dgl 0.7.1.
 
-We can build from source. Firstly, we need to update the submodule.
+We can install dgl easily by
+```
+pip install https://data.dgl.ai/wheels/dgl_cu113-0.7.1-cp38-cp38-manylinux1_x86_64.whl
+```
+
+We can also build from source. Firstly, we need to update the submodule.
 ```
 git submodule update --init --recursive
 cd dgl/
