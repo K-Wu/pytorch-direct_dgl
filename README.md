@@ -15,7 +15,9 @@ DGL >= 0.6.1
 ### Pytorch
 Since we modify the source code of PyTorch, our implementation cannot be installed through well-known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
 
-### DGL
+### DGL Installation
+We do not modify the source of DGL, so the users can either install DGL using `pip` or by compiling from the source code. Please follow the DGL readme file to install DGL.
+
 We support dgl 0.6.1, 0.7.1.
 
 We can install dgl easily by
@@ -86,9 +88,6 @@ In this case the temporary tensor is fixed to `temp_tensor` declaration so the u
 ### Basics
 For a more practical example, we perform GNN training with the well known Deep Graph Library (DGL). The example code is located in the dgl submodule of this repository. The exact location is `<current_path>/dgl/examples/pytorch/graphsage/train_sampling_pytorch_direct.py`.
 To compare with the original PyTorch approach, the users can use the unmodified DGL implementation in `<current_path>/dgl/examples/pytorch/graphsage/train_sampling.py`. By default, the DGL example always try to load the whole data into the GPU memory. Therefore, to compare the host memory access performance, the user needs to add `--data-cpu` argument to the DGL example.
-
-### DGL Installation
-We do not modify the source of DGL so the users can either install DGL using `pip` or by compiling from the source code. Please follow the DGL readme file to install DGL.
 
 ### Using Multi-Processing Service (MPS)
 To further increase the efficiency of PyTorch-Direct in GNN training, CUDA Multi-Processing Service (MPS) can be used. The purpose of MPS is to allocate a small amount of GPU resource for the zero-copy accesses while leaving the rest for the training process. The MPS can be used in our example GNN code by passing `--mps x,y` argument. Here, `x` is the GPU portion given for the zero-copy kernel and `y` is the GPU portion given for the trainig process. For the NVIDIA RTX 3090 GPU we used, we used `--mps 10,90` setting.
