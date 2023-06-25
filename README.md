@@ -3,7 +3,7 @@
 PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing PyTorch DNN framework. Allowing the zero-copy access capabily for GPU significantly increases the data transfer efficiency over PCIe when the targeted data is scattered in the host memory. This is especially useful when the input data cannot be fit into the GPU memory ahead of the training time, and data pieces need to be transferred during the training time. With PyTorch-Direct, using the zero-copy access capability can be done by declaring a "Unified Tensor" on top of the existing CPU tensor. The current implementation of PyTorch-Direct is based on the nightly version of PyTorch-1.8.0.
 
 
-The `UnifiedTensor` was introduced in dgl at https://github.com/dmlc/dgl/commit/905c0aa578bca6f51ac2ff453c17e579d5a1b0fb. But after that, it was substituted by the combination of pin_memory_inplace and gather_pinned_tensor_rows functions under `dgl.utils`. See [dgl/pin_memory.py  ](https://github.com/dmlc/dgl/blob/master/python/dgl/utils/pin_memory.py)for reference.
+The `UnifiedTensor` was once introduced in dgl at https://github.com/dmlc/dgl/commit/905c0aa578bca6f51ac2ff453c17e579d5a1b0fb. But after that, it was substituted by the combination of `pin_memory_inplace` and `gather_pinned_tensor_rows` functions under `dgl.utils`. See [dgl/pin_memory.py  ](https://github.com/dmlc/dgl/blob/master/python/dgl/utils/pin_memory.py)for reference.
 
 ## Installation
 
@@ -16,13 +16,13 @@ DGL >= 0.6.1
 Since we modify the source code of PyTorch, our implementation cannot be installed through well-known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
 
 ### DGL
-We support dgl 0.6.1， 0.7.1.
+We support dgl 0.6.1, 0.7.1.
 
 We can install dgl easily by
 ```
 pip install https://data.dgl.ai/wheels/dgl_cu113-0.7.1-cp38-cp38-manylinux1_x86_64.whl
 ```
-refer https://data.dgl.ai/wheels/repo.html for your environment version
+refer to https://data.dgl.ai/wheels/repo.html for your environment version
 
 We can also build from source. Firstly, we need to update the submodule.
 ```
