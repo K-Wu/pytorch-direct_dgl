@@ -22,6 +22,7 @@ We can install dgl easily by
 ```
 pip install https://data.dgl.ai/wheels/dgl_cu113-0.7.1-cp38-cp38-manylinux1_x86_64.whl
 ```
+refer https://data.dgl.ai/wheels/repo.html for your environment version
 
 We can also build from source. Firstly, we need to update the submodule.
 ```
