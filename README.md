@@ -2,20 +2,31 @@
 ## Introduction
 PyTorch-Direct adds a zero-copy access capability for GPU on top of the existing PyTorch DNN framework. Allowing the zero-copy access capabily for GPU significantly increases the data transfer efficiency over PCIe when the targeted data is scattered in the host memory. This is especially useful when the input data cannot be fit into the GPU memory ahead of the training time, and data pieces need to be transferred during the training time. With PyTorch-Direct, using the zero-copy access capability can be done by declaring a "Unified Tensor" on top of the existing CPU tensor. The current implementation of PyTorch-Direct is based on the nightly version of PyTorch-1.8.0.
 
+
+The `UnifiedTensor` was once introduced in dgl at https://github.com/dmlc/dgl/commit/905c0aa578bca6f51ac2ff453c17e579d5a1b0fb. But after that, it was substituted by the combination of `pin_memory_inplace` and `gather_pinned_tensor_rows` functions under `dgl.utils`. See [dgl/pin_memory.py  ](https://github.com/dmlc/dgl/blob/master/python/dgl/utils/pin_memory.py)for reference.
+
 ## Installation
 
 ### Env
 
 Python >= 3.8
-
+DGL >= 0.6.1
 
 ### Pytorch
 Since we modify the source code of PyTorch, our implementation cannot be installed through well-known tools like `pip`. To compile and install the modified version of our code, please follow [this](https://github.com/K-Wu/pytorch-direct/tree/e2d0a3366145d0df4577797a5b2117c69271009c#from-source).
 
-### DGL
-We use dgl 0.6.1.
+### DGL Installation
+We do not modify the source of DGL, so the users can either install DGL using `pip` or by compiling from the source code. 
 
-We can build from source. Firstly, we need to update the submodule.
+We support dgl 0.6.1, 0.7.1.
+
+We can install dgl easily by
+```
+pip install https://data.dgl.ai/wheels/dgl_cu113-0.7.1-cp38-cp38-manylinux1_x86_64.whl
+```
+refer to https://data.dgl.ai/wheels/repo.html for your environment version
+
+We can also build from source. Firstly, we need to update the submodule.
 ```
 git submodule update --init --recursive
 cd dgl/
@@ -77,9 +88,6 @@ In this case the temporary tensor is fixed to `temp_tensor` declaration so the u
 ### Basics
 For a more practical example, we perform GNN training with the well known Deep Graph Library (DGL). The example code is located in the dgl submodule of this repository. The exact location is `<current_path>/dgl/examples/pytorch/graphsage/train_sampling_pytorch_direct.py`.
 To compare with the original PyTorch approach, the users can use the unmodified DGL implementation in `<current_path>/dgl/examples/pytorch/graphsage/train_sampling.py`. By default, the DGL example always try to load the whole data into the GPU memory. Therefore, to compare the host memory access performance, the user needs to add `--data-cpu` argument to the DGL example.
-
-### DGL Installation
-We do not modify the source of DGL so the users can either install DGL using `pip` or by compiling from the source code. Please follow the DGL readme file to install DGL.
 
 ### Using Multi-Processing Service (MPS)
 To further increase the efficiency of PyTorch-Direct in GNN training, CUDA Multi-Processing Service (MPS) can be used. The purpose of MPS is to allocate a small amount of GPU resource for the zero-copy accesses while leaving the rest for the training process. The MPS can be used in our example GNN code by passing `--mps x,y` argument. Here, `x` is the GPU portion given for the zero-copy kernel and `y` is the GPU portion given for the trainig process. For the NVIDIA RTX 3090 GPU we used, we used `--mps 10,90` setting.
